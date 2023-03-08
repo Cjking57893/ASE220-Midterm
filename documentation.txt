@@ -2,4 +2,4 @@ For our project, we wanted to do a messaging system. With the messaging system u
 
 The project will use JSON Blob as a database to store the users, chats, and the messages in the chats.
 
-The entities that will be used for the project is a user entity, chat entity, and message entity. The user entity will have properties for id, first name, last name, email address, and location. The chat entity will have properties for id, Boolean for if it is a group chat, array for the users, date created, and date last updated. The message entity will have properties for id, text within message, user who sent it, chat that it belongs to, and date sent.
+The entities that will be used for the project is a user entity, chat entity, and message entity. The user entity will have properties for id, first name, last name, email address, password, and location. The chat entity will have properties for id, Boolean for if it is a group chat, array for the users, date created, and date last updated. The message entity will have properties for id, text within message, user who sent it, chat that it belongs to, and date sent.
