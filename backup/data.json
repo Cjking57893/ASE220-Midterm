@@ -1,5 +1,42 @@
-[
-    {
-
-    }
-]
+{
+    "users": [
+      {
+        "id": 1,
+        "firstName": "Cody",
+        "lastName": "King",
+        "email": "cody_king5@icloud.com",
+        "password": "password1",
+        "location": "Augusta, KY"
+      },
+      {
+        "id": 2,
+        "firstName": "Nicholas",
+        "lastName": "Cummins",
+        "email": "ncummins34@windstream.com",
+        "password": "password3",
+        "location": "Brooksville, KY"
+      }
+    ],
+    "chats": [
+      {
+        "id": 1,
+        "isGroupChat": false,
+        "users": [
+          1,
+          2
+        ],
+        "dateCreated": "3/8/2023",
+        "dateLastUpdated": "3/8/2023"
+      }
+    ],
+    "messages": [
+      {
+        "id": 1,
+        "text": "lorem ipsum",
+        "from": 1,
+        "to": 2,
+        "chat": 1,
+        "dateSent": "3/8/2023"
+      }
+    ]
+  }
