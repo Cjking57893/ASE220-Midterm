@@ -3,6 +3,7 @@ const database = {
         api.GET(documentID, response => {
             callback(response.data.users);
         });
+        //add a way to upload pictures?
     },
     chats: (documentID, callback) => {
         api.GET(documentID, response => {
@@ -13,6 +14,7 @@ const database = {
         api.GET(documentID, response => {
             callback(response.data.messages);
         });
+        //need PUT method for sendin messages
     },
     addUser: (documentID, newUser, callback) => {
         api.GET(documentID, response => {
