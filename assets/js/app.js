@@ -168,7 +168,9 @@ const chatvia = {
                                 hideMsgs();
                             }
                         }
-                    })
+                    });
+                    //sending messages
+                    
                 })
             }
         })
