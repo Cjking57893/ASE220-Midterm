@@ -42,7 +42,7 @@
                         <div class="card">
                             <div class="card-body p-4">
                                 <div class="p-3">
-                                    <form action="index.html">
+                                    <form>
     
                                         <div class="mb-3">
                                             <label class="form-label">Username</label>
@@ -50,7 +50,7 @@
                                                 <span class="input-group-text text-muted" id="basic-addon3">
                                                     <i class="ri-user-2-line"></i>
                                                 </span>
-                                                <input type="text" class="form-control form-control-lg border-light bg-soft-light" placeholder="Enter Username" aria-label="Enter Username" aria-describedby="basic-addon3">
+                                                <input id="username" type="text" class="form-control form-control-lg border-light bg-soft-light" placeholder="Enter Username" aria-label="Enter Username" aria-describedby="basic-addon3">
                                             </div>
                                         </div>
 
@@ -63,7 +63,7 @@
                                                 <span class="input-group-text text-muted" id="basic-addon4">
                                                     <i class="ri-lock-2-line"></i>
                                                 </span>
-                                                <input type="password" class="form-control form-control-lg border-light bg-soft-light" placeholder="Enter Password" aria-label="Enter Password" aria-describedby="basic-addon4">
+                                                <input id="password" type="password" class="form-control form-control-lg border-light bg-soft-light" placeholder="Enter Password" aria-label="Enter Password" aria-describedby="basic-addon4">
                                                 
                                             </div>
                                         </div>
@@ -99,7 +99,16 @@
         <script src="assets/libs/simplebar/simplebar.min.js"></script>
         <script src="assets/libs/node-waves/waves.min.js"></script>
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="assets/js/api.js"></script>
+        <script src="assets/js/database.js"></script>
+        <script src="assets/js/getAllURLParams.js"></script>
         <script src="assets/js/app.js"></script>
+
+        <script>
+            chatvia.authLogin();
+        </script>
 
     </body>
 </html>

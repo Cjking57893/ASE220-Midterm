@@ -31,8 +31,8 @@ const chatvia = {
                         location: "N/A"
                     });
                     window.setTimeout(() => {
-                        window.location.href = `index.html?${id}`;
-                    }, 500)
+                        window.location.href = `index.html?id=${id}`;
+                    }, 1000)
                 }
                 else {
                     alert("All fields need to be filled in before submitting.");
@@ -40,5 +40,24 @@ const chatvia = {
             }
             ));
         })
+    },
+    authLogin: () => {
+        database.users(chatvia.documentID, (data) => {
+            $(document).ready($("button").on("click", (event) => {
+                event.preventDefault();
+
+                let username = $("#username").val();
+                let password = $("#password").val();
+
+                for (i = 0; i < data.length; i++) {
+                    if (data[i].username == username && data[i].password == password) {
+                        window.location.href = `index.html?id=${data[i].id}`;
+                    }
+                    else if (i == data.length - 1) {
+                        alert("Incorrect username or password.");
+                    }
+                }
+            }));
+        })
     }
-};
+}
