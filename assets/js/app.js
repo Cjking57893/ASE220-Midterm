@@ -102,12 +102,28 @@ const chatvia = {
                 email[i].innerHTML=MAINUSER.email;
             }
             //end displaying users email
+
+            //start location
             let userLocation = $(".user-location");
             for(let i=0;i<userLocation.length;i++){
                 userLocation[i].innerHTML=MAINUSER.location;
             }
-            //start location
+            //end location
 
+            //start contact list
+                //populates contact list
+            let contactList=$(".contact-list");
+            for(let i=0; i<data.length; i++){
+                contactList[0].innerHTML += `
+                <li class="user-contact">
+                <div class="d-flex align-items-center">
+                    <div class="flex-grow-1">
+                        <h5 class="font-size-14 m-0 contact-name">${data[i].firstName} ${data[i].lastName}</h5>
+                    </div>
+                </div>
+            </li>
+                `
+            }
         })
     }
 }
