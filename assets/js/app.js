@@ -1,22 +1,38 @@
 const chatvia = {
     documentID: "1083125169756848128",
     authRegister: () => {
-        const form = $("form");
-        let id = database.users.length + 1;
-        let firstName = $("#firstName").val();
-        let lastName = $("#lastName").val();
-        let email = $("#email").val();
-        let username = $("#username").val();
-        let password = $("#password").val();
-        let location = "NA";
-        form.submit(database.addUser(chatvia.documentID, {
-            "id": `${id}`,
-            "firstName": `${firstName}`,
-            "lastName": `${lastName}`,
-            "email": `${email}`,
-            "username": `${username}`,
-            "password": `${password}`,
-            "location": location
-        }));
+        database.users(chatvia.documentID, (data) => {
+
+            $(document).ready($("button").on("click", (event) => {
+                event.preventDefault();
+
+                let areFieldsBlank = false;
+
+                $('#form *').filter(':input').each(function () {
+                    if ($(this).prop("tagName") == "INPUT") {
+                        if ($(this).val() == "") {
+                            areFieldsBlank = true;
+                        }
+                    }
+                });
+
+                if (!areFieldsBlank) {
+                    database.addUser(chatvia.documentID, {
+                        id: data.length += 1,
+                        firstName: $("#firstName").val(),
+                        lastName: $("#lastName").val(),
+                        email: $("#email").val(),
+                        username: $("#username").val(),
+                        password: $("#password").val(),
+                        location: "N/A"
+                    });
+                }
+                else {
+                    alert("All fields need to be filled in before submitting.");
+                }
+            }
+            ));
+
+        })
     }
 };
