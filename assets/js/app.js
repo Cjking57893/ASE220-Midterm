@@ -92,9 +92,15 @@ const chatvia = {
             //start displying users email
             let email = $(".users-email");
             for(let i=0;i<email.length;i++){
-                email[i].innerHTML="api call to users email";
+                email[i].innerHTML=MAINUSER.email;
             }
             //end displaying users email
+            let userLocation = $(".user-location");
+            for(let i=0;i<userLocation.length;i++){
+                userLocation[i].innerHTML=MAINUSER.location;
+            }
+            //start location
+
         })
     }
 }
