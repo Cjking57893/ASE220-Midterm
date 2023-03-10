@@ -62,12 +62,15 @@ const chatvia = {
     },
     index: () => {
         database.users(chatvia.documentID, (data) =>{
-            
+            var convo; //to tell what conversation is displayed
             //hide initial messages template
-            let sentMessages=$(".sent-msg");
-            for(let i=0;i<sentMessages.length;i++){
-                sentMessages[i].style.display="none";
+            function hideMsgs(){
+                let sentMessages=$(".sent-msg");
+                for(let i=0;i<sentMessages.length;i++){
+                    sentMessages[i].style.display="none";
+                }
             }
+            hideMsgs();
 
             const MAINUSER=data[getAllUrlParams().id-1];
             console.log(MAINUSER);
@@ -91,9 +94,7 @@ const chatvia = {
             for(let i=0; i<name.length; i++){
                 name[i].innerHTML=`${MAINUSER.firstName} ${MAINUSER.lastName}`;
             }
-            for(let i=0; i<conversationName.length; i++){
-                conversationName[i].innerHTML="enter Conversation Name here"; //not sure how to tell what user you are talking to
-            }
+
             //end setting users name
 
             //start displying users email
@@ -114,21 +115,29 @@ const chatvia = {
                 //populates contact list
             let contactList=$(".contact-list");
             for(let i=0; i<data.length; i++){
-                contactList[0].innerHTML += `
-                <li class="user-contact">
-                <div class="d-flex align-items-center">
-                    <div class="flex-grow-1">
-                        <h5 class="font-size-14 m-0 contact-name">${data[i].firstName} ${data[i].lastName}</h5>
+                if(data[i].id != MAINUSER.id){
+                    contactList[0].innerHTML += `
+                    <li class="user-contact" id="${data[i].id}">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <h5 class="font-size-14 m-0 contact-name">${data[i].firstName} ${data[i].lastName}</h5>
+                        </div>
                     </div>
-                </div>
-            </li>`
+                </li>`
+                }
             }
 
-            //contact on click
+            //contact on click shows conversation
             let contact = $(".user-contact");
             for(let i=0;i<contact.length;i++){
                 contact[i].addEventListener('click',function(){
-                    alert("test");
+                    convo=contact[i].id;
+                    /*window.location.href = `example-index.html?id=${MAINUSER.id}#convo=${contact[i].id}`;*/
+
+                    //changing the conversation names after clicking
+                    for(let j=0; j<conversationName.length; j++){
+                        conversationName[j].innerHTML=`${data[i].firstName} ${data[i].lastName}`;
+                    }
                 })
             }
         })
