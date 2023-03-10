@@ -62,6 +62,13 @@ const chatvia = {
     },
     index: () => {
         database.users(chatvia.documentID, (data) =>{
+            
+            //hide initial messages template
+            let sentMessages=$(".sent-msg");
+            for(let i=0;i<sentMessages.length;i++){
+                sentMessages[i].style.display="none";
+            }
+
             const MAINUSER=data[getAllUrlParams().id-1];
             console.log(MAINUSER);
             //start setting profile images
