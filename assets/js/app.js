@@ -121,8 +121,15 @@ const chatvia = {
                         <h5 class="font-size-14 m-0 contact-name">${data[i].firstName} ${data[i].lastName}</h5>
                     </div>
                 </div>
-            </li>
-                `
+            </li>`
+            }
+
+            //contact on click
+            let contact = $(".user-contact");
+            for(let i=0;i<contact.length;i++){
+                contact[i].addEventListener('click',function(){
+                    alert("test");
+                })
             }
         })
     }
