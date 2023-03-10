@@ -70,7 +70,7 @@ const chatvia = {
                     sentMessages[i].style.display="none";
                 }
             }
-            hideMsgs();
+            //hideMsgs();
 
             const MAINUSER=data[getAllUrlParams().id-1];
             console.log(MAINUSER);
@@ -126,18 +126,46 @@ const chatvia = {
                 </li>`
                 }
             }
-
             //contact on click shows conversation
             let contact = $(".user-contact");
             for(let i=0;i<contact.length;i++){
                 contact[i].addEventListener('click',function(){
+                    //hideMsgs();
                     convo=contact[i].id;
                     /*window.location.href = `example-index.html?id=${MAINUSER.id}#convo=${contact[i].id}`;*/
 
                     //changing the conversation names after clicking
                     for(let j=0; j<conversationName.length; j++){
-                        conversationName[j].innerHTML=`${data[i].firstName} ${data[i].lastName}`;
+                        var chatName = data[i].firstName + " " + data[i].lastName;
+                        conversationName[j].innerHTML=`${chatName}`;
                     }
+                    //show messages
+                    database.messages(chatvia.documentID, function(chatData){
+                        console.log(chatData);
+                        let chatLog=$(".chat-log")
+                        for(let i=0; i<chatData.length; i++){
+
+                            chatLog[0].innerHTML=`<li class="sent-msg">
+                            <div class="conversation-list">
+                                <div class="chat-avatar">
+                                    <img src="assets/images/users/avatar-4.jpg" alt="">
+                                </div>
+    
+                                <div class="user-chat-content">
+                                    <div class="ctext-wrap">
+                                        <div class="ctext-wrap-content">
+                                            <p class="mb-0">
+                                                ${chatData[i].text}
+                                            </p>
+                                            <p class="chat-time mb-0"><i class="ri-time-line align-middle"></i> <span class="align-middle">${chatData[i].dateSent}</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="conversation-name">${chatName}</div>
+                                </div>
+                            </div>
+                        </li>`;
+                        }
+                    })
                 })
             }
         })

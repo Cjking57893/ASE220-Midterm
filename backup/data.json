@@ -1,42 +1,62 @@
 {
-    "users": [
-      {
-        "id": 1,
-        "firstName": "Cody",
-        "lastName": "King",
-        "email": "cody_king5@icloud.com",
-        "password": "password1",
-        "location": "Augusta, KY"
-      },
-      {
-        "id": 2,
-        "firstName": "Nicholas",
-        "lastName": "Cummins",
-        "email": "ncummins34@windstream.com",
-        "password": "password3",
-        "location": "Brooksville, KY"
-      }
-    ],
-    "chats": [
-      {
-        "id": 1,
-        "isGroupChat": false,
-        "users": [
-          1,
-          2
-        ],
-        "dateCreated": "3/8/2023",
-        "dateLastUpdated": "3/8/2023"
-      }
-    ],
-    "messages": [
-      {
-        "id": 1,
-        "text": "lorem ipsum",
-        "from": 1,
-        "to": 2,
-        "chat": 1,
-        "dateSent": "3/8/2023"
-      }
-    ]
-  }
+  "users": [
+    {
+      "id": 1,
+      "firstName": "fasds",
+      "lastName": "fsadfas",
+      "email": "fdsafads@gmail.com",
+      "username": "fdsafsa",
+      "password": "fdasfas",
+      "location": "N/A"
+    },
+    {
+      "id": 2,
+      "firstName": "fsadfa",
+      "lastName": "fdsafasd",
+      "email": "fasdfas@gmail.com",
+      "username": "fasdfas",
+      "password": "dasfadsdf",
+      "location": "N/A"
+    },
+    {
+      "id": 3,
+      "firstName": "Cody",
+      "lastName": "King",
+      "email": "cody_king5@icloud.com",
+      "username": "theking200",
+      "password": "password1",
+      "location": "N/A"
+    },
+    {
+      "id": 4,
+      "firstName": "Bryce",
+      "lastName": "Bien",
+      "email": "1234@gmail.com",
+      "username": "brycebien",
+      "password": "password1",
+      "location": "N/A"
+    }
+  ],
+  "chats": [
+    {
+      "id": 1,
+      "isGroupChat": false,
+      "users": [
+        1,
+        2
+      ],
+      "dateCreated": "3/8/2023",
+      "dateLastUpdated": "3/8/2023"
+    }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "text": "lorem ipsum",
+      "from": 1,
+      "to": 2,
+      "chat": 1,
+      "dateSent": "3/8/2023"
+    }
+  ]
+}
