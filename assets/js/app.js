@@ -137,33 +137,36 @@ const chatvia = {
                     //changing the conversation names after clicking
                     for(let j=0; j<conversationName.length; j++){
                         var chatName = data[i].firstName + " " + data[i].lastName;
+                        var chatID = data[i].id;
                         conversationName[j].innerHTML=`${chatName}`;
                     }
                     //show messages
                     database.messages(chatvia.documentID, function(chatData){
-                        console.log(chatData);
                         let chatLog=$(".chat-log")
                         for(let i=0; i<chatData.length; i++){
-
-                            chatLog[0].innerHTML=`<li class="sent-msg">
-                            <div class="conversation-list">
-                                <div class="chat-avatar">
-                                    <img src="assets/images/users/avatar-4.jpg" alt="">
-                                </div>
-    
-                                <div class="user-chat-content">
-                                    <div class="ctext-wrap">
-                                        <div class="ctext-wrap-content">
-                                            <p class="mb-0">
-                                                ${chatData[i].text}
-                                            </p>
-                                            <p class="chat-time mb-0"><i class="ri-time-line align-middle"></i> <span class="align-middle">${chatData[i].dateSent}</span></p>
-                                        </div>
+                            if(chatData[i].to == MAINUSER.id && chatData[i].from == chatID){
+                                chatLog[0].innerHTML=`<li class="sent-msg">
+                                <div class="conversation-list">
+                                    <div class="chat-avatar">
+                                        <img src="assets/images/users/avatar-4.jpg" alt="">
                                     </div>
-                                    <div class="conversation-name">${chatName}</div>
+        
+                                    <div class="user-chat-content">
+                                        <div class="ctext-wrap">
+                                            <div class="ctext-wrap-content">
+                                                <p class="mb-0">
+                                                    ${chatData[i].text}
+                                                </p>
+                                                <p class="chat-time mb-0"><i class="ri-time-line align-middle"></i> <span class="align-middle">${chatData[i].dateSent}</span></p>
+                                            </div>
+                                        </div>
+                                        <div class="conversation-name">${chatName}</div>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>`;
+                            </li>`;
+                            }else{
+                                hideMsgs();
+                            }
                         }
                     })
                 })
