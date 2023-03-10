@@ -17,11 +17,19 @@ const database = {
         });
         //need PUT method for sendin messages
     },
-    addUser: (documentID, newUser, callback) => {
+    addUser: (documentID, newUser) => {
         api.GET(documentID, response => {
             response.data.users.push(newUser);
             api.PUT(documentID, response.data, () => {
                 console.log("User has been added");
+            });
+        });
+    },
+    addMessage: (documentID, newMessage) => {
+        api.GET(documentID, response => {
+            response.data.messages.push(newMessage);
+            api.PUT(documentID, response.data, () => {
+                console.log("Message has been added");
             });
         });
     }
