@@ -201,36 +201,38 @@ const chatvia = {
                 });
             }
             function updateMsgs(chatID, chatData, chatLog){
-                console.log("called update msgs")
-                for(let i=0; i<chatData.length; i++){
-                    if(chatData[i].to==chatID && chatData[i].from==MAINUSER.id){
-                        chatLog[0].innerHTML+=`<li class="right sent-msg">
-                        <div class="conversation-list">
-                            <div class="chat-avatar">
-                                <img src="assets/images/users/avatar-1.jpg" alt="">
-                            </div>
-    
-                            <div class="user-chat-content">
-                                <div class="ctext-wrap">
-                                    <div class="ctext-wrap-content">
-                                        <p class="mb-0">
-                                            ${chatData[i].text}
-                                        </p>
-                                        <p class="chat-time mb-0"><i class="ri-time-line align-middle"></i> <span class="align-middle">${chatData[i].dateSent}</span></p>
-                                    </div>   
+                console.log("called update msgs");
+                console.log("is it updated>: " + api.updated);
+
+                    for(let i=0; i<chatData.length; i++){
+                        if(chatData[i].to==chatID && chatData[i].from==MAINUSER.id){
+                            chatLog[0].innerHTML+=`<li class="right sent-msg">
+                            <div class="conversation-list">
+                                <div class="chat-avatar">
+                                    <img src="assets/images/users/avatar-1.jpg" alt="">
                                 </div>
-                                <div class="users-name">${MAINUSER.firstName} ${MAINUSER.lastName}</div>
+        
+                                <div class="user-chat-content">
+                                    <div class="ctext-wrap">
+                                        <div class="ctext-wrap-content">
+                                            <p class="mb-0">
+                                                ${chatData[i].text}
+                                            </p>
+                                            <p class="chat-time mb-0"><i class="ri-time-line align-middle"></i> <span class="align-middle">${chatData[i].dateSent}</span></p>
+                                        </div>   
+                                    </div>
+                                    <div class="users-name">${MAINUSER.firstName} ${MAINUSER.lastName}</div>
+                                </div>
                             </div>
-                        </div>
-                    </li>`;
+                        </li>`;
+                        }
                     }
-                }
+                database.updated=false;
             }
 
             //sending messages
             let submit=$(".btn-primary");
             let content=$(".msg-content");
-            console.log(submit);
             submit[0].addEventListener('click',function(msgData){
                 console.log(content[0].value);
                 let id=msgData.length++;
@@ -244,7 +246,11 @@ const chatvia = {
                 })
                 content[0].value = "";
             })
-            updateMsgs(chatID, chatDataUpdate, chatLog);
+            setInterval( function(){
+                if(database.updated==true){
+                    updateMsgs(chatID, chatDataUpdate, chatLog);
+                }
+            },100);
         })
     }
 }
