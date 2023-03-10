@@ -3,10 +3,12 @@ const chatvia = {
     authRegister: () => {
         database.users(chatvia.documentID, (data) => {
 
-            $(document).ready($("button").on("click", (event) => {
-                event.preventDefault();
+            console.log(data);
 
+            $(document).ready($("button").on("click", (event) => {
                 let areFieldsBlank = false;
+
+                event.preventDefault();
 
                 $('#form *').filter(':input').each(function () {
                     if ($(this).prop("tagName") == "INPUT") {
@@ -16,9 +18,11 @@ const chatvia = {
                     }
                 });
 
+                id = data.length += 1;
+
                 if (!areFieldsBlank) {
                     database.addUser(chatvia.documentID, {
-                        id: data.length += 1,
+                        id: id,
                         firstName: $("#firstName").val(),
                         lastName: $("#lastName").val(),
                         email: $("#email").val(),
@@ -26,13 +30,15 @@ const chatvia = {
                         password: $("#password").val(),
                         location: "N/A"
                     });
+                    window.setTimeout(() => {
+                        window.location.href = `index.html?${id}`;
+                    }, 500)
                 }
                 else {
                     alert("All fields need to be filled in before submitting.");
                 }
             }
             ));
-
         })
     }
 };

@@ -14,12 +14,12 @@ const database = {
             callback(response.data.messages);
         });
     },
-    addUser: (documentID, newUser) => {
+    addUser: (documentID, newUser, callback) => {
         api.GET(documentID, response => {
             response.data.users.push(newUser);
             api.PUT(documentID, response.data, () => {
                 console.log("User has been added");
             });
-        })
+        });
     }
 }
