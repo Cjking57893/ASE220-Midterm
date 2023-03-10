@@ -58,6 +58,10 @@ const chatvia = {
         })
     },
     index: () => {
+        if (getAllUrlParams().id == undefined) {
+            window.location.href = "auth-login.html";
+        }
+
         database.users(chatvia.documentID, (data) => {
             var convo; //to tell what conversation is displayed
             //hide initial messages template
