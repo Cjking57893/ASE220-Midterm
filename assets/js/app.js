@@ -70,6 +70,7 @@ const chatvia = {
                     sentMessages[i].style.display="none";
                 }
             }
+            hideMsgs();
             //hideMsgs();
 
             const MAINUSER=data[getAllUrlParams().id-1];
