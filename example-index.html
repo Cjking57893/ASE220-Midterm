@@ -38,7 +38,7 @@
             <div class="side-menu flex-lg-column me-lg-1 ms-lg-0">
                 <!-- LOGO -->
                 <div class="navbar-brand-box">
-                    <a href="index.html" class="logo logo-dark">
+                    <a href="example-index.html" class="logo logo-dark">
                         <span class="logo-sm">
                             <img src="assets/images/logo.svg" alt="" height="30">
                         </span>
@@ -150,7 +150,7 @@
                                     <img src="assets/images/users/avatar-1.jpg" class="rounded-circle avatar-lg img-thumbnail" alt="">
                                 </div>
 
-                                <h5 class="font-size-16 mb-1 text-truncate name">Patricia Smith</h5>
+                                <h5 class="font-size-16 mb-1 text-truncate users-name">Patricia Smith</h5>
                                 <p class="text-muted text-truncate mb-1"><i class="ri-record-circle-fill font-size-10 text-success me-1 ms-0 d-inline-block"></i> Active</p>
                             </div>
                             <!-- End profile user -->
@@ -175,7 +175,7 @@
                                             <div class="accordion-body">
                                                 <div>
                                                     <p class="text-muted mb-1">Name</p>
-                                                    <h5 class="font-size-14 name">Patricia Smith</h5>
+                                                    <h5 class="font-size-14 users-name">Patricia Smith</h5>
                                                 </div>
 
                                                 <div class="mt-4">
@@ -1564,14 +1564,14 @@
                             </div>
 
                             <div class="text-center border-bottom p-4">
-                                <div class="mb-4 profile-user">
+                                <div class="mb-4">
                                     <img src="assets/images/users/avatar-1.jpg" class="rounded-circle avatar-lg img-thumbnail" alt="">
                                     <button type="button" class="btn btn-light bg-light avatar-xs p-0 rounded-circle profile-photo-edit">
                                         <i class="ri-pencil-fill"></i>
                                     </button>
                                 </div>
 
-                                <h5 class="font-size-16 mb-1 text-truncate name">Patricia Smith</h5>
+                                <h5 class="font-size-16 mb-1 text-truncate users-name">Patricia Smith</h5>
                                 <div class="dropdown d-inline-block mb-1">
                                     <a class="text-muted dropdown-toggle pb-1 d-block" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Available <i class="mdi mdi-chevron-down"></i>
@@ -1602,7 +1602,7 @@
 
                                                 <div>
                                                     <p class="text-muted mb-1">Name</p>
-                                                    <h5 class="font-size-14 name">Patricia Smith</h5>
+                                                    <h5 class="font-size-14 users-name">Patricia Smith</h5>
                                                 </div>
 
                                                 <div class="mt-4">
@@ -1774,7 +1774,7 @@
                                                 </div>
                                             </div>
                                             
-                                            <div class="conversation-name name">Patricia Smith</div>
+                                            <div class="conversation-name users-name">Patricia Smith</div>
                                         </div>
                                     </div>
                                 </li>
@@ -1866,7 +1866,7 @@
                                                 </div>
                                             </div>
     
-                                            <div class="conversation-name name">Patricia Smith</div>
+                                            <div class="conversation-name users-name">Patricia Smith</div>
                                         </div>
                                         
                                     </div>
@@ -2023,7 +2023,7 @@
                                                 
                                             </div>
                                             
-                                            <div class="conversation-name name">Patricia Smith</div>
+                                            <div class="conversation-name users-name">Patricia Smith</div>
                                         </div>
                                         
                                     </div>
@@ -2426,17 +2426,21 @@
             let smProfImg = document.getElementsByClassName("profile-user");
             let profImg = document.getElementsByClassName("avatar-lg");
             
-            for(let i=0; profImg.length; i++){
-                smProfImg[i].src='https://sienaconstruction.com/wp-content/uploads/2017/05/test-image.jpg'; //these will be GET calls
+            for(let i=0; i<profImg.length; i++){
                 profImg[i].src='https://sienaconstruction.com/wp-content/uploads/2017/05/test-image.jpg';
+            }
+            for(let i=0; i<smProfImg.length; i++){
+                smProfImg[i].src='https://sienaconstruction.com/wp-content/uploads/2017/05/test-image.jpg'; //these will be GET calls
             }
             //end setting profile images
 
-            console.log("working");
-            let name = document.getElementsByClassName("name");
-            for(let i=0; name.length; i++){
-                console.log("working");
+            //start setting users name
+            let name = document.getElementsByClassName("users-name");
+
+            for(let i=0; i<name.length; i++){
+                name[i].innerHTML="enter name here"; //not sure how to call api?
             }
+
         </script>
 
     </body>
