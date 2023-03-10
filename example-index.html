@@ -1872,14 +1872,21 @@
         <!-- page init -->
         <script src="assets/js/pages/index.init.js"></script>
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="assets/js/api.js"></script>
+        <script src="assets/js/database.js"></script>
+        <script src="assets/js/getAllURLParams.js"></script>
         <script src="assets/js/app.js"></script>
+
+
 
 
         <script>
             //start setting profile images
                 //note need to update chat avatar and add a way for user to upload their own imgs
-            let smProfImg = document.getElementsByClassName("profile-user");
-            let profImg = document.getElementsByClassName("avatar-lg");
+            let smProfImg = $(".profile-user");
+            let profImg = $(".avatar-lg");
             
             for(let i=0; i<profImg.length; i++){
                 profImg[i].src='https://sienaconstruction.com/wp-content/uploads/2017/05/test-image.jpg';
@@ -1905,6 +1912,8 @@
             for(let i=0;i<email.length;i++){
                 email[i].innerHTML="api call to users email";
             }
+            //end displaying users email
+            console.log("users: " + database.users(chatvia.documentID, function(){}));
         </script>
 
     </body>
