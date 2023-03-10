@@ -31,7 +31,7 @@ const chatvia = {
                         location: "N/A"
                     });
                     window.setTimeout(() => {
-                        window.location.href = `index.html?id=${id}`;
+                        window.location.href = `example-index.html?id=${id}`;
                     }, 1000)
                 }
                 else {
@@ -51,7 +51,7 @@ const chatvia = {
 
                 for (i = 0; i < data.length; i++) {
                     if (data[i].username == username && data[i].password == password) {
-                        window.location.href = `index.html?id=${data[i].id}`;
+                        window.location.href = `example-index.html?id=${data[i].id}`;
                     }
                     else if (i == data.length - 1) {
                         alert("Incorrect username or password.");
