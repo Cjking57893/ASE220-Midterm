@@ -59,5 +59,45 @@ const chatvia = {
                 }
             }));
         })
+    },
+    index: () => {
+        let index=getAllUrlParams().id;
+        //let user=database.users(chatvia.documentID, function(data){data[index-1]});
+
+        console.log("user: " + database.users(chatvia.documentID, function(data){data[index-1]}));
+
+        //start setting profile images
+            //note: need to update chat avatar and add a way for user to upload their own imgs
+        let smProfImg = $(".profile-user");
+        let profImg = $(".avatar-lg");
+        
+        for(let i=0; i<profImg.length; i++){
+            profImg[i].src='https://sienaconstruction.com/wp-content/uploads/2017/05/test-image.jpg';
+        }
+        for(let i=0; i<smProfImg.length; i++){
+            smProfImg[i].src='https://sienaconstruction.com/wp-content/uploads/2017/05/test-image.jpg'; //these will be GET calls for users profile image --- not sure how to change the conversation image
+        }
+        //end setting profile images
+
+        //start setting users name
+        let name = $(".users-name");
+        let conversationName = $(".conversation-name")
+
+        /*for(let i=0; i<name.length && user.firstName != undefined && user.lastName != undefined; i++){
+            name[i].innerHTML=`${user.firstName} ${user.lastName}`;
+        }*/
+        for(let i=0; i<conversationName.length; i++){
+            conversationName[i].innerHTML="enter Conversation Name here"; //not sure how to tell what user you are talking to
+        }
+        //end setting users name
+
+        //start displying users email
+        let email = $(".users-email");
+        for(let i=0;i<email.length;i++){
+            email[i].innerHTML="api call to users email";
+        }
+        //end displaying users email
+
+
     }
 }
