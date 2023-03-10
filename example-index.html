@@ -105,7 +105,7 @@
 
                         <li class="nav-item btn-group dropup profile-user-dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="assets/images/users/avatar-1.jpg" alt="" class="profile-user rounded-circle">
+                                <img src="assets/images/users/avatar-1.jpg" alt="" class="profile-user rounded-circle" id="test">
                             </a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#">Profile <i class="ri-profile-line float-end text-muted"></i></a>
@@ -2560,6 +2560,21 @@
         <script src="assets/js/pages/index.init.js"></script>
 
         <script src="assets/js/app.js"></script>
+
+        <script>
+            //start setting profile images
+                //note need to update chat avatar and add a way for user to upload their own imgs
+            let smProfImg = document.getElementsByClassName("profile-user");
+            let profImg = document.getElementsByClassName("avatar-lg");
+            
+            for(let i=0; profImg.length; i++){
+                smProfImg[i].src='https://sienaconstruction.com/wp-content/uploads/2017/05/test-image.jpg';
+                profImg[i].src='https://sienaconstruction.com/wp-content/uploads/2017/05/test-image.jpg';
+            }
+            //end setting profile images
+
+            
+        </script>
 
     </body>
 </html>
