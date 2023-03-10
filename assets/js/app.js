@@ -54,17 +54,6 @@ const chatvia = {
                         window.location.href = `index.html?id=${e.id}`;
                     }
                 });
-
-                // for (i = 0; i <= data.length - 1; i++) {
-                //     console.log(data[i].id);
-                //     console.log(i);
-                //     if (data[i].username == username && data[i].password == password) {
-                //         window.location.href = `index.html?id=${data[i].id}`;
-                //     }
-                //     else if (data[i] == data[data.length - 1]) {
-                //         alert("Incorrect username or password.");
-                //     }
-                // }
             }));
         })
     },
