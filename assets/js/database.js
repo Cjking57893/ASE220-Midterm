@@ -1,3 +1,4 @@
+var updated=false;
 const database = {
     users: (documentID, callback) => {
         api.GET(documentID, response => {
@@ -30,6 +31,8 @@ const database = {
             response.data.messages.push(newMessage);
             api.PUT(documentID, response.data, () => {
                 console.log("Message has been added");
+                updated=true;
+                console.log(updated);
             });
         });
     }
