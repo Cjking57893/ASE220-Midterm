@@ -28,7 +28,7 @@ const chatvia = {
                         email: $("#email").val(),
                         username: $("#username").val(),
                         password: $("#password").val(),
-                        location: "N/A"
+                        location: $("#location").val()
                     });
                     window.setTimeout(() => {
                         window.location.href = `index.html?id=${id}`;
@@ -58,30 +58,30 @@ const chatvia = {
         })
     },
     index: () => {
-        database.users(chatvia.documentID, (data) =>{
+        database.users(chatvia.documentID, (data) => {
             var convo; //to tell what conversation is displayed
             //hide initial messages template
-            function hideMsgs(){
+            function hideMsgs() {
                 console.log("called hide msg");
-                let sentMessages=$(".placeholder-msg");
-                for(let i=0;i<sentMessages.length;i++){
-                    sentMessages[i].style.display="none";
+                let sentMessages = $(".placeholder-msg");
+                for (let i = 0; i < sentMessages.length; i++) {
+                    sentMessages[i].style.display = "none";
                 }
             }
             //hideMsgs();
 
-            const MAINUSER=data[getAllUrlParams().id-1];
+            const MAINUSER = data[getAllUrlParams().id - 1];
             console.log(MAINUSER);
             //start setting profile images
-                //note: need to update chat avatar and add a way for user to upload their own imgs
+            //note: need to update chat avatar and add a way for user to upload their own imgs
             let smProfImg = $(".profile-user");
             let profImg = $(".avatar-lg");
-            
-            for(let i=0; i<profImg.length; i++){
-                profImg[i].src='https://sienaconstruction.com/wp-content/uploads/2017/05/test-image.jpg';
+
+            for (let i = 0; i < profImg.length; i++) {
+                profImg[i].src = 'https://sienaconstruction.com/wp-content/uploads/2017/05/test-image.jpg';
             }
-            for(let i=0; i<smProfImg.length; i++){
-                smProfImg[i].src='https://sienaconstruction.com/wp-content/uploads/2017/05/test-image.jpg'; //these will be GET calls for users profile image --- not sure how to change the conversation image
+            for (let i = 0; i < smProfImg.length; i++) {
+                smProfImg[i].src = 'https://sienaconstruction.com/wp-content/uploads/2017/05/test-image.jpg'; //these will be GET calls for users profile image --- not sure how to change the conversation image
             }
             //end setting profile images
 
@@ -89,31 +89,31 @@ const chatvia = {
             let name = $(".users-name");
             let conversationName = $(".conversation-name")
 
-            for(let i=0; i<name.length; i++){
-                name[i].innerHTML=`${MAINUSER.firstName} ${MAINUSER.lastName}`;
+            for (let i = 0; i < name.length; i++) {
+                name[i].innerHTML = `${MAINUSER.firstName} ${MAINUSER.lastName}`;
             }
 
             //end setting users name
 
             //start displying users email
             let email = $(".users-email");
-            for(let i=0;i<email.length;i++){
-                email[i].innerHTML=MAINUSER.email;
+            for (let i = 0; i < email.length; i++) {
+                email[i].innerHTML = MAINUSER.email;
             }
             //end displaying users email
 
             //start location
             let userLocation = $(".user-location");
-            for(let i=0;i<userLocation.length;i++){
-                userLocation[i].innerHTML=MAINUSER.location;
+            for (let i = 0; i < userLocation.length; i++) {
+                userLocation[i].innerHTML = MAINUSER.location;
             }
             //end location
 
             //start contact list
-                //populates contact list
-            let contactList=$(".contact-list");
-            for(let i=0; i<data.length; i++){
-                if(data[i].id != MAINUSER.id){
+            //populates contact list
+            let contactList = $(".contact-list");
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].id != MAINUSER.id) {
                     contactList[0].innerHTML += `
                     <li class="user-contact" id="${data[i].id}">
                     <div class="d-flex align-items-center">
@@ -128,32 +128,32 @@ const chatvia = {
             let contact = $(".user-contact");
             var chatID;
             var chatName;
-            for(let i=0;i<contact.length;i++){
-                contact[i].addEventListener('click',function(){
+            for (let i = 0; i < contact.length; i++) {
+                contact[i].addEventListener('click', function () {
                     hideMsgs();
-                    convo=contact[i].id;
+                    convo = contact[i].id;
 
                     //changing the conversation names after clicking
-                    
-                    for(let j=0; j<conversationName.length; j++){
+
+                    for (let j = 0; j < conversationName.length; j++) {
                         chatName = data[i].firstName + " " + data[i].lastName;
                         chatID = data[i].id;
-                        conversationName[j].innerHTML=`${chatName}`;
+                        conversationName[j].innerHTML = `${chatName}`;
                     }
-                    showMsgs(chatID, chatName);  
+                    showMsgs(chatID, chatName);
                 })
             }
             //show messages
             var chatDataUpdate;
             var chatLog;
-            function showMsgs(chatID, chatName){
-                database.messages(chatvia.documentID, function(chatData){
-                    chatDataUpdate=chatData;
+            function showMsgs(chatID, chatName) {
+                database.messages(chatvia.documentID, function (chatData) {
+                    chatDataUpdate = chatData;
                     console.log("called show msgs");
-                    chatLog=$(".chat-log")
-                    for(let i=0; i<chatData.length; i++){
-                        if(chatData[i].to == MAINUSER.id && chatData[i].from == chatID){
-                            chatLog[0].innerHTML+=`<li class="sent-msg">
+                    chatLog = $(".chat-log")
+                    for (let i = 0; i < chatData.length; i++) {
+                        if (chatData[i].to == MAINUSER.id && chatData[i].from == chatID) {
+                            chatLog[0].innerHTML += `<li class="sent-msg">
                             <div class="conversation-list">
                                 <div class="chat-avatar">
                                     <img src="assets/images/users/avatar-4.jpg" alt="">
@@ -173,8 +173,8 @@ const chatvia = {
                             </div>
                         </li>`;
                         }
-                        if(chatData[i].to==chatID && chatData[i].from==MAINUSER.id){
-                            chatLog[0].innerHTML+=`<li class="right sent-msg">
+                        if (chatData[i].to == chatID && chatData[i].from == MAINUSER.id) {
+                            chatLog[0].innerHTML += `<li class="right sent-msg">
                             <div class="conversation-list">
                                 <div class="chat-avatar">
                                     <img src="assets/images/users/avatar-1.jpg" alt="">
@@ -197,13 +197,13 @@ const chatvia = {
                     }
                 });
             }
-            function updateMsgs(chatID, chatData, chatLog){
+            function updateMsgs(chatID, chatData, chatLog) {
                 console.log("called update msgs");
                 console.log("is it updated>: " + api.updated);
 
-                    for(let i=0; i<chatData.length; i++){
-                        if(chatData[i].to==chatID && chatData[i].from==MAINUSER.id){
-                            chatLog[0].innerHTML+=`<li class="right sent-msg">
+                for (let i = 0; i < chatData.length; i++) {
+                    if (chatData[i].to == chatID && chatData[i].from == MAINUSER.id) {
+                        chatLog[0].innerHTML += `<li class="right sent-msg">
                             <div class="conversation-list">
                                 <div class="chat-avatar">
                                     <img src="assets/images/users/avatar-1.jpg" alt="">
@@ -222,17 +222,17 @@ const chatvia = {
                                 </div>
                             </div>
                         </li>`;
-                        }
                     }
-                database.updated=false;
+                }
+                database.updated = false;
             }
 
             //sending messages
-            let submit=$(".btn-primary");
-            let content=$(".msg-content");
-            submit[0].addEventListener('click',function(msgData){
+            let submit = $(".btn-primary");
+            let content = $(".msg-content");
+            submit[0].addEventListener('click', function (msgData) {
                 console.log(content[0].value);
-                let id=msgData.length++;
+                let id = msgData.length++;
                 database.addMessage(chatvia.documentID, {
                     id: id,
                     text: content[0].value,
@@ -243,11 +243,11 @@ const chatvia = {
                 })
                 content[0].value = "";
             })
-            setInterval( function(){
-                if(database.updated==true){
+            setInterval(function () {
+                if (database.updated == true) {
                     updateMsgs(chatID, chatDataUpdate, chatLog);
                 }
-            },100);
+            }, 100);
         })
     }
 }
