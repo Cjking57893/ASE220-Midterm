@@ -65,12 +65,12 @@ const chatvia = {
             var convo; //to tell what conversation is displayed
             //hide initial messages template
             function hideMsgs(){
-                let sentMessages=$(".sent-msg");
+                console.log("called hide msg");
+                let sentMessages=$(".placeholder-msg");
                 for(let i=0;i<sentMessages.length;i++){
                     sentMessages[i].style.display="none";
                 }
             }
-            hideMsgs();
             //hideMsgs();
 
             const MAINUSER=data[getAllUrlParams().id-1];
@@ -129,51 +129,122 @@ const chatvia = {
             }
             //contact on click shows conversation
             let contact = $(".user-contact");
+            var chatID;
+            var chatName;
             for(let i=0;i<contact.length;i++){
                 contact[i].addEventListener('click',function(){
-                    //hideMsgs();
+                    hideMsgs();
                     convo=contact[i].id;
-                    /*window.location.href = `example-index.html?id=${MAINUSER.id}#convo=${contact[i].id}`;*/
 
                     //changing the conversation names after clicking
+                    
                     for(let j=0; j<conversationName.length; j++){
-                        var chatName = data[i].firstName + " " + data[i].lastName;
-                        var chatID = data[i].id;
+                        chatName = data[i].firstName + " " + data[i].lastName;
+                        chatID = data[i].id;
                         conversationName[j].innerHTML=`${chatName}`;
                     }
-                    //show messages
-                    database.messages(chatvia.documentID, function(chatData){
-                        let chatLog=$(".chat-log")
-                        for(let i=0; i<chatData.length; i++){
-                            if(chatData[i].to == MAINUSER.id && chatData[i].from == chatID){
-                                chatLog[0].innerHTML=`<li class="sent-msg">
-                                <div class="conversation-list">
-                                    <div class="chat-avatar">
-                                        <img src="assets/images/users/avatar-4.jpg" alt="">
-                                    </div>
-        
-                                    <div class="user-chat-content">
-                                        <div class="ctext-wrap">
-                                            <div class="ctext-wrap-content">
-                                                <p class="mb-0">
-                                                    ${chatData[i].text}
-                                                </p>
-                                                <p class="chat-time mb-0"><i class="ri-time-line align-middle"></i> <span class="align-middle">${chatData[i].dateSent}</span></p>
-                                            </div>
-                                        </div>
-                                        <div class="conversation-name">${chatName}</div>
-                                    </div>
-                                </div>
-                            </li>`;
-                            }else{
-                                hideMsgs();
-                            }
-                        }
-                    });
-                    //sending messages
-                    
+                    showMsgs(chatID, chatName);  
                 })
             }
+            //show messages
+            var chatDataUpdate;
+            var chatLog;
+            function showMsgs(chatID, chatName){
+                database.messages(chatvia.documentID, function(chatData){
+                    chatDataUpdate=chatData;
+                    console.log("called show msgs");
+                    chatLog=$(".chat-log")
+                    for(let i=0; i<chatData.length; i++){
+                        if(chatData[i].to == MAINUSER.id && chatData[i].from == chatID){
+                            chatLog[0].innerHTML+=`<li class="sent-msg">
+                            <div class="conversation-list">
+                                <div class="chat-avatar">
+                                    <img src="assets/images/users/avatar-4.jpg" alt="">
+                                </div>
+    
+                                <div class="user-chat-content">
+                                    <div class="ctext-wrap">
+                                        <div class="ctext-wrap-content">
+                                            <p class="mb-0">
+                                                ${chatData[i].text}
+                                            </p>
+                                            <p class="chat-time mb-0"><i class="ri-time-line align-middle"></i> <span class="align-middle">${chatData[i].dateSent}</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="conversation-name">${chatName}</div>
+                                </div>
+                            </div>
+                        </li>`;
+                        }
+                        if(chatData[i].to==chatID && chatData[i].from==MAINUSER.id){
+                            chatLog[0].innerHTML+=`<li class="right sent-msg">
+                            <div class="conversation-list">
+                                <div class="chat-avatar">
+                                    <img src="assets/images/users/avatar-1.jpg" alt="">
+                                </div>
+
+                                <div class="user-chat-content">
+                                    <div class="ctext-wrap">
+                                        <div class="ctext-wrap-content">
+                                            <p class="mb-0">
+                                                ${chatData[i].text}
+                                            </p>
+                                            <p class="chat-time mb-0"><i class="ri-time-line align-middle"></i> <span class="align-middle">${chatData[i].dateSent}</span></p>
+                                        </div>   
+                                    </div>
+                                    <div class="users-name">${MAINUSER.firstName} ${MAINUSER.lastName}</div>
+                                </div>
+                            </div>
+                        </li>`;
+                        }
+                    }
+                });
+            }
+            function updateMsgs(chatID, chatData, chatLog){
+                console.log("called update msgs")
+                for(let i=0; i<chatData.length; i++){
+                    if(chatData[i].to==chatID && chatData[i].from==MAINUSER.id){
+                        chatLog[0].innerHTML+=`<li class="right sent-msg">
+                        <div class="conversation-list">
+                            <div class="chat-avatar">
+                                <img src="assets/images/users/avatar-1.jpg" alt="">
+                            </div>
+    
+                            <div class="user-chat-content">
+                                <div class="ctext-wrap">
+                                    <div class="ctext-wrap-content">
+                                        <p class="mb-0">
+                                            ${chatData[i].text}
+                                        </p>
+                                        <p class="chat-time mb-0"><i class="ri-time-line align-middle"></i> <span class="align-middle">${chatData[i].dateSent}</span></p>
+                                    </div>   
+                                </div>
+                                <div class="users-name">${MAINUSER.firstName} ${MAINUSER.lastName}</div>
+                            </div>
+                        </div>
+                    </li>`;
+                    }
+                }
+            }
+
+            //sending messages
+            let submit=$(".btn-primary");
+            let content=$(".msg-content");
+            console.log(submit);
+            submit[0].addEventListener('click',function(msgData){
+                console.log(content[0].value);
+                let id=msgData.length++;
+                database.addMessage(chatvia.documentID, {
+                    id: id,
+                    text: content[0].value,
+                    from: MAINUSER.id,
+                    to: convo,
+                    chat: 1,
+                    dateSent: "3/8/2023"
+                })
+                content[0].value = "";
+            })
+            updateMsgs(chatID, chatDataUpdate, chatLog);
         })
     }
 }
