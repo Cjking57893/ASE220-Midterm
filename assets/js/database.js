@@ -4,6 +4,7 @@ const database = {
             callback(response.data.users);
         });
         //add a way to upload pictures?
+        //add bio? (dont have to include these if we dont want up to you)
     },
     chats: (documentID, callback) => {
         api.GET(documentID, response => {
