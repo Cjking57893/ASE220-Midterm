@@ -168,12 +168,7 @@
 
                                                 <div class="mt-4">
                                                     <p class="text-muted mb-1">Email</p>
-                                                    <h5 class="font-size-14">adc@123.com</h5>
-                                                </div>
-
-                                                <div class="mt-4">
-                                                    <p class="text-muted mb-1">Time</p>
-                                                    <h5 class="font-size-14">11:40 AM</h5>
+                                                    <h5 class="font-size-14 users-email">adc@123.com</h5>
                                                 </div>
 
                                                 <div class="mt-4">
@@ -1131,12 +1126,7 @@
 
                                                 <div class="mt-4">
                                                     <p class="text-muted mb-1">Email</p>
-                                                    <h5 class="font-size-14">adc@123.com</h5>
-                                                </div>
-
-                                                <div class="mt-4">
-                                                    <p class="text-muted mb-1">Time</p>
-                                                    <h5 class="font-size-14">11:40 AM</h5>
+                                                    <h5 class="font-size-14 users-email">adc@123.com</h5>
                                                 </div>
 
                                                 <div class="mt-4">
@@ -1909,6 +1899,12 @@
                 conversationName[i].innerHTML="enter Conversation Name here"; //not sure how to call api?
             }
             //end setting users name
+
+            //start displying users email
+            let email = $(".users-email");
+            for(let i=0;i<email.length;i++){
+                email[i].innerHTML="api call to users email";
+            }
         </script>
 
     </body>
