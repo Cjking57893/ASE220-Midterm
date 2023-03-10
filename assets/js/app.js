@@ -31,7 +31,7 @@ const chatvia = {
                         location: "N/A"
                     });
                     window.setTimeout(() => {
-                        window.location.href = `example-index.html?id=${id}`;
+                        window.location.href = `index.html?id=${id}`;
                     }, 1000)
                 }
                 else {
@@ -49,14 +49,22 @@ const chatvia = {
                 let username = $("#username").val();
                 let password = $("#password").val();
 
-                for (i = 0; i < data.length; i++) {
-                    if (data[i].username == username && data[i].password == password) {
-                        window.location.href = `example-index.html?id=${data[i].id}`;
+                data.forEach((e, i, data) => {
+                    if (e.username == username && e.password == password) {
+                        window.location.href = `index.html?id=${e.id}`;
                     }
-                    else if (i == data.length - 1) {
-                        alert("Incorrect username or password.");
-                    }
-                }
+                });
+
+                // for (i = 0; i <= data.length - 1; i++) {
+                //     console.log(data[i].id);
+                //     console.log(i);
+                //     if (data[i].username == username && data[i].password == password) {
+                //         window.location.href = `index.html?id=${data[i].id}`;
+                //     }
+                //     else if (data[i] == data[data.length - 1]) {
+                //         alert("Incorrect username or password.");
+                //     }
+                // }
             }));
         })
     },
